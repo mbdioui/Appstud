@@ -1,32 +1,28 @@
 package fr.utbm.appstud.appstudtest;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 public class Main_Activity extends AppCompatActivity {
 
-    private TextView mTextMessage;
+    private Fragment fragment;
+    private ActionBar actionBar;
+    private FragmentManager fragmentManager;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;
-            }
-            return false;
+            return selectFragment(item);
         }
 
     };
@@ -35,10 +31,34 @@ public class Main_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
-
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        actionBar=getSupportActionBar();
+        actionBar.hide();
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation_bottom);
+        Menu menu = navigation.getMenu();
+        selectFragment(menu.getItem(0));
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
     }
+
+    private boolean selectFragment(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.navigation_map:
+                fragment = new CardFragment();
+                break;
+            case R.id.navigation_list:
+                fragment = new CardFragment();
+                break;
+        }
+        fragmentManager = getFragmentManager();
+        if (fragmentManager != null) {
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            if (ft != null) {
+                ft.replace(R.id.main_activity_fragment, fragment);
+                ft.commit();
+            }
+        }
+        return false;
+    }
+
 
 }
