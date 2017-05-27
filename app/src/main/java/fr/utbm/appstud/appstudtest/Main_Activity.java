@@ -3,6 +3,7 @@ package fr.utbm.appstud.appstudtest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ListFragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -16,6 +17,7 @@ public class Main_Activity extends AppCompatActivity {
     private Fragment fragment;
     private ActionBar actionBar;
     private FragmentManager fragmentManager;
+    private Menu menu;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -34,11 +36,12 @@ public class Main_Activity extends AppCompatActivity {
         actionBar=getSupportActionBar();
         actionBar.hide();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation_bottom);
-        Menu menu = navigation.getMenu();
-        selectFragment(menu.getItem(0));
+        menu = navigation.getMenu();
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        selectFragment(menu.getItem(0));
 
     }
+
 
     private boolean selectFragment(MenuItem item) {
         switch (item.getItemId()) {
@@ -46,7 +49,7 @@ public class Main_Activity extends AppCompatActivity {
                 fragment = new CardFragment();
                 break;
             case R.id.navigation_list:
-                fragment = new CardFragment();
+                fragment = new ListFragment();
                 break;
         }
         fragmentManager = getFragmentManager();
