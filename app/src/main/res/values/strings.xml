@@ -7,4 +7,5 @@
     <string name="title_List">List</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="google_maps_key">AIzaSyAy0J5hwWS8RGzvwEndC-SAqAQNYSwrOII</string>
+    <string name="excuse">Je n\'ai pas pu terminer toutes les tâches faute de temps  </string>
 </resources>

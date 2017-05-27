@@ -3,7 +3,6 @@ package fr.utbm.appstud.appstudtest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.app.ListFragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -49,7 +48,7 @@ public class Main_Activity extends AppCompatActivity {
                 fragment = new CardFragment();
                 break;
             case R.id.navigation_list:
-                fragment = new ListFragment();
+                fragment = new NavigationlistFragment();
                 break;
         }
         fragmentManager = getFragmentManager();

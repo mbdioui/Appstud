@@ -1,16 +1,18 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container_fragment"
     tools:context="fr.utbm.appstud.appstudtest.CardFragment">
+
 
     <TextView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/List"
-        android:text=""
+        android:text="@string/excuse"
         android:layout_width="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_height="match_parent" />
 
-</FrameLayout>
+</RelativeLayout>
